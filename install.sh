@@ -91,8 +91,18 @@ link_file "$DOTFILES_DIR/vscode/settings.json" "$CURSOR_DIR/settings.json"
 # ---------------------------------------------------------------------------
 if [[ -f "$DOTFILES_DIR/Brewfile" ]]; then
     info "Installing Homebrew packages from Brewfile..."
+    # Temporarily disable exit on error to continue even if some casks fail
+    set +e
     brew bundle --file="$DOTFILES_DIR/Brewfile"
-    success "Brewfile installed"
+    BUNDLE_EXIT_CODE=$?
+    set -e
+    
+    if [[ $BUNDLE_EXIT_CODE -eq 0 ]]; then
+        success "Brewfile installed"
+    else
+        warn "Brewfile installation completed with some errors. Some packages may have failed to install."
+        warn "You can retry failed installations later with: brew bundle --file=\"$DOTFILES_DIR/Brewfile\""
+    fi
 else
     warn "No Brewfile found, skipping"
 fi

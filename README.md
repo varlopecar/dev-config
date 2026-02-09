@@ -158,6 +158,33 @@ The `macos/defaults.sh` script configures:
 - **Trackpad**: tap to click, three-finger drag
 - **Misc**: expanded save/print panels, no .DS_Store on network/USB
 
+## Troubleshooting
+
+### Some Homebrew casks failed to install
+
+If you see errors during `brew bundle` installation (e.g., "Download failed on Cask 'telegram'"), the install script will continue anyway. You can:
+
+1. **Retry the installation:**
+   ```bash
+   brew bundle --file=~/dotfiles/Brewfile
+   ```
+
+2. **Install the failed cask manually:**
+   ```bash
+   brew install --cask telegram
+   ```
+
+3. **Update the cask if the URL is outdated:**
+   ```bash
+   brew update
+   brew upgrade --cask telegram
+   ```
+
+4. **Remove the problematic cask from Brewfile** if you don't need it, then regenerate:
+   ```bash
+   brew bundle dump --file=~/dotfiles/Brewfile --force
+   ```
+
 ## Updating
 
 When you change a config on your machine, the symlinked files in `~/dotfiles/` are already updated. Just commit and push:
