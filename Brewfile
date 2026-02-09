@@ -4,7 +4,6 @@ tap "homebrew/bundle"
 # CLI Tools
 brew "cocoapods"
 brew "gh"
-brew "nvm"
 brew "volta"
 brew "watchman"
 
