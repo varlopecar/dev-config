@@ -14,56 +14,9 @@ Personal dev environment configuration. One script to set up any new Mac (or Lin
 - **macOS** — System preferences (Dock, Finder, keyboard, screenshots, trackpad)
 - **Company repos** — Auto-clones all Dishop-SaaS repositories into `~/dev/`
 
-## Quick start
+## Prerequisites: Setting up SSH keys
 
-```bash
-git clone git@github.com:varlopecar/dev-config.git ~/dotfiles
-cd ~/dotfiles
-chmod +x install.sh
-./install.sh
-```
-
-## What the install script does
-
-1. Installs Homebrew (if not present)
-2. Installs Oh My Zsh (if not present)
-3. Symlinks all config files to their expected locations
-   - Shell: `~/.zshrc`
-   - Git: `~/.gitconfig`, `~/.config/git/ignore`
-   - GitHub CLI: `~/.config/gh/config.yml`
-   - VS Code: `~/Library/Application Support/Code/User/settings.json`
-   - Cursor: `~/Library/Application Support/Cursor/User/settings.json`
-4. Runs `brew bundle` to install packages, casks, fonts, and VS Code extensions
-5. Installs Volta and Node.js LTS
-6. Sets Zsh as the default shell
-7. Applies macOS system preferences (Dock, Finder, keyboard, screenshots)
-8. Clones all Dishop-SaaS company repositories into `~/dev/`
-9. Prints instructions for generating SSH keys
-
-## Project structure
-
-```
-dotfiles/
-├── Brewfile                 # Homebrew packages, casks, fonts, extensions
-├── install.sh               # Main setup script
-├── README.md
-├── .gitignore
-├── gh/
-│   └── config.yml           # GitHub CLI config
-├── git/
-│   ├── .gitconfig           # Git user, aliases, LFS, pull strategy
-│   └── ignore               # Global gitignore
-├── macos/
-│   └── defaults.sh          # macOS system preferences
-├── shell/
-│   └── .zshrc               # Zsh config with Oh My Zsh
-└── vscode/
-    └── settings.json        # Shared VS Code & Cursor settings
-```
-
-## Setting up SSH on a new machine
-
-SSH keys are **not** stored in this repo. Each machine needs its own key pair. Follow these steps after running `install.sh`:
+**IMPORTANT:** Before cloning this repository, you need to set up SSH keys for GitHub. The install script uses SSH to clone repositories, so SSH authentication must be configured first.
 
 ### Step 1: Generate a new SSH key
 
@@ -129,6 +82,55 @@ chmod 600 ~/.ssh/config
 ```
 
 This ensures the SSH agent uses the macOS Keychain and your key is loaded automatically on every terminal session.
+
+## Quick start
+
+Once SSH keys are set up, clone and install:
+
+```bash
+git clone git@github.com:varlopecar/dev-config.git ~/dotfiles
+cd ~/dotfiles
+chmod +x install.sh
+./install.sh
+```
+
+## What the install script does
+
+1. Installs Homebrew (if not present)
+2. Installs Oh My Zsh (if not present)
+3. Symlinks all config files to their expected locations
+   - Shell: `~/.zshrc`
+   - Git: `~/.gitconfig`, `~/.config/git/ignore`
+   - GitHub CLI: `~/.config/gh/config.yml`
+   - VS Code: `~/Library/Application Support/Code/User/settings.json`
+   - Cursor: `~/Library/Application Support/Cursor/User/settings.json`
+4. Runs `brew bundle` to install packages, casks, fonts, and VS Code extensions
+5. Installs Volta and Node.js LTS
+6. Sets Zsh as the default shell
+7. Applies macOS system preferences (Dock, Finder, keyboard, screenshots)
+8. Clones all Dishop-SaaS company repositories into `~/dev/` (requires SSH keys to be set up first)
+
+## Project structure
+
+```
+dotfiles/
+├── Brewfile                 # Homebrew packages, casks, fonts, extensions
+├── install.sh               # Main setup script
+├── README.md
+├── .gitignore
+├── gh/
+│   └── config.yml           # GitHub CLI config
+├── git/
+│   ├── .gitconfig           # Git user, aliases, LFS, pull strategy
+│   └── ignore               # Global gitignore
+├── macos/
+│   └── defaults.sh          # macOS system preferences
+├── shell/
+│   └── .zshrc               # Zsh config with Oh My Zsh
+└── vscode/
+    └── settings.json        # Shared VS Code & Cursor settings
+```
+
 
 ## Git aliases
 
