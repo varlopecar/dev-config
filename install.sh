@@ -91,6 +91,8 @@ link_file "$DOTFILES_DIR/vscode/settings.json" "$CURSOR_DIR/settings.json"
 # ---------------------------------------------------------------------------
 if [[ -f "$DOTFILES_DIR/Brewfile" ]]; then
     info "Installing Homebrew packages from Brewfile..."
+    # Remove deprecated homebrew/bundle tap if present (bundle is now in core)
+    brew untap homebrew/bundle 2>/dev/null || brew untap Homebrew/homebrew-bundle 2>/dev/null || true
     # Temporarily disable exit on error to continue even if some casks fail
     set +e
     brew bundle --file="$DOTFILES_DIR/Brewfile"
@@ -178,14 +180,5 @@ done
 # ---------------------------------------------------------------------------
 echo ""
 success "Dotfiles installation complete!"
-echo ""
-info "NEXT STEP: Generate SSH keys for this machine:"
-echo "  ssh-keygen -t ed25519 -C \"carlos@ciggy-app.com\""
-echo "  eval \"\$(ssh-agent -s)\""
-echo "  ssh-add ~/.ssh/id_ed25519"
-echo ""
-info "Then add the public key to GitHub:"
-echo "  gh auth login"
-echo "  gh ssh-key add ~/.ssh/id_ed25519.pub --title \"$(hostname)\""
 echo ""
 info "Open a new terminal to apply all changes."

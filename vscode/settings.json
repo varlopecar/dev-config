@@ -7,5 +7,6 @@
     "terminal.external.osxExec": "Warp.app",
     "files.autoSave": "afterDelay",
     "github.copilot.nextEditSuggestions.enabled": true,
-    "workbench.sideBar.location": "right"
+    "workbench.sideBar.location": "right",
+    "window.commandCenter": true
 }

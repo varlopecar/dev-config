@@ -1,6 +1,3 @@
-# Taps
-tap "homebrew/bundle"
-
 # CLI Tools
 brew "cocoapods"
 brew "gh"
