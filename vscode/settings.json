@@ -9,5 +9,6 @@
     "github.copilot.nextEditSuggestions.enabled": true,
     "workbench.sideBar.location": "right",
     "window.commandCenter": true,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "cursor.composer.usageSummaryDisplay": "always"
 }
